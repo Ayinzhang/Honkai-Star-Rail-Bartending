@@ -1,7 +1,8 @@
-Shader "Phong/Opaque"
+Shader "Custom/Opaque"
 {
     Properties
     {
+        _Color("Col", Color) = (1, 1, 1, 1)
         _BaseMap("Base", 2D) = "white" {}
     }
     SubShader
@@ -19,6 +20,9 @@ Shader "Phong/Opaque"
             #pragma fragment frag
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
+            CBUFFER_START(UnityPerMaterial)
+            float4 _Color;
+            CBUFFER_END
             TEXTURE2D(_BaseMap); SAMPLER(sampler_BaseMap);
 
             struct appdata
@@ -49,10 +53,10 @@ Shader "Phong/Opaque"
 
             float4 frag(v2f i) : SV_Target
             {
-                float4 albedo = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, i.uv);
+                float4 albedo = _Color * SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, i.uv);
                 float3 N = normalize(i.normal);
                 float3 V = normalize(_WorldSpaceCameraPos - i.position);
-                float3 L = normalize(_MainLightPosition.xyz); // Assume directional ligh
+                float3 L = normalize(_MainLightPosition.xyz); // Assume directional light
                 float3 R = reflect(-L, N);
 
                 float ambientStrength = 0.5, diffuseStrength = 0.4, specularStrength = 0.1;

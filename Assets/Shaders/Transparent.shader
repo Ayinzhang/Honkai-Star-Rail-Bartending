@@ -1,9 +1,9 @@
-Shader "Phong/Transparent"
+Shader "Custom/Transparent"
 {
     Properties
     {
+        _Color("Col", Color) = (1, 1, 1, 1)
         _NormalMap("Normal", 2D) = "bump" {}  
-        _Color("Color", Color) = (0.8, 0.9, 1, 0.5)
     }
     SubShader
     {
@@ -23,9 +23,10 @@ Shader "Phong/Transparent"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
-            // ÉùÃ÷ÊôÐÔ
-            TEXTURE2D(_NormalMap); SAMPLER(sampler_NormalMap);
+            CBUFFER_START(UnityPerMaterial)
             float4 _Color;
+            CBUFFER_END
+            TEXTURE2D(_NormalMap); SAMPLER(sampler_NormalMap);
 
             struct appdata
             {
@@ -61,7 +62,7 @@ Shader "Phong/Transparent"
             {
                 float4 albedo = _Color;
                 float3 V = normalize(_WorldSpaceCameraPos - i.position);
-                float3 L = normalize(_MainLightPosition.xyz); // Assume directional ligh
+                float3 L = normalize(_MainLightPosition.xyz); // Assume directional light
                 float3 normal = UnpackNormal(SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, i.uv));
                 float3 N = normalize(float3(dot(i.tbn0, normal), dot(i.tbn1, normal), dot(i.tbn2, normal)));
                 float3 R = reflect(-L, N);

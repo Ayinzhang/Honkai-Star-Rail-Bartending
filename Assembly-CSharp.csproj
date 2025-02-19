@@ -70,6 +70,7 @@
     <None Include="Assets\Shaders\PBR_Core.hlsl" />
     <None Include="Assets\Shaders\Transparent.shader" />
     <None Include="Assets\Shaders\PBR_Opaque.shader" />
+    <None Include="Assets\Shaders\Wine.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

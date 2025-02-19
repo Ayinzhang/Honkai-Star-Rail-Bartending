@@ -3,51 +3,110 @@ using Unity.Mathematics;
 
 public class Surface : MonoBehaviour
 {
-    public int gridSize = 4;
-    public Texture2D heightMap;
+    public int gridSize = 4, iteration = 16;
+    public float dt = 1f / 30, damp = 0.95f;
+    public Material material;
 
-    int mapSize;
-    float2[] points;// x: height, y: velocity
-    float4[] pixels;// xyz: normal, w: height
+    float3[] points; // x: height, y: old_height z: velocity
+    int[] constrains; // bitmask
+    float4[] datas; // x: height, yzw: normal
+    ComputeBuffer dataBuffer;
 
     void Start()
     {
-        mapSize = Mathf.Min(heightMap.width, heightMap.height);
-        points = new float2[gridSize * gridSize];
-        pixels = new float4[mapSize * mapSize];
+        points = new float3[gridSize * gridSize];
+        constrains = new int[gridSize * gridSize];
+        datas = new float4[points.Length];
+        dataBuffer = new ComputeBuffer(points.Length, 4 * sizeof(float));
+        material.SetInt("_GridSize", gridSize);
 
-        for (int i = 0; i < gridSize * gridSize; i++)
+        for (int i = 0; i < constrains.Length; i++)
         {
-            int u = i / gridSize, v = i % gridSize;
-            points[i] = new float2((u + 1) / gridSize, (v + 1) / gridSize);
+            int x = i / gridSize, y = i % gridSize;
+
+            // Build Constrains
+            if (x < gridSize - 1)
+            {
+                constrains[x * gridSize + y] = (constrains[x * gridSize + y] << 3) + 1; 
+                constrains[(x + 1) * gridSize + y] = (constrains[(x + 1) * gridSize + y] << 3) + 2;
+            }
+            if (y < gridSize - 1)
+            {
+                constrains[x * gridSize + y] = (constrains[x * gridSize + y] << 3) + 3;
+                constrains[x * gridSize + y + 1] = (constrains[x * gridSize + y + 1] << 3) + 4;
+            }
         }
     }
 
     void Update()
     {
-        for (int i = 0; i < mapSize * mapSize; i++)
+        // PBD Iteration
+        for (int i = 0; i < points.Length; i++)
         {
-            int u = i / mapSize, v = i % mapSize;
-            float x = (u + 1) / mapSize, y = (v + 1) / mapSize;
-            int ul = (int)(x / gridSize), ur = Mathf.Min(ul + 1, gridSize - 1),
-                vl = (int)(y / gridSize), vr = Mathf.Min(vl + 1, gridSize - 1);
-            float uf = mapSize * (x - ul - 1) / gridSize, vf = mapSize * (y - vl - 1) / gridSize;
-            pixels[i].w = 0.5f * (math.smoothstep(points[ul].x, points[ur].x, uf) +
-                math.smoothstep(points[vl].x, points[vr].x, vf));
+            points[i].z *= damp;
+            points[i].x += dt * points[i].z;
+            points[i].x += UnityEngine.Random.Range(-0.01f, 0.01f);
+            points[i].x = math.clamp(points[i].x, 0, 1);
+        }
+        for (int i = 0; i < iteration; i++) 
+        {
+            for (int j = 0; j < constrains.Length; j++) 
+            {
+                int num = constrains[j], cnt = 0; 
+                float delta = 0;
+                while (num > 0)
+                {
+                    switch(num & 7)
+                    {
+                        case 1:
+                            delta += 0.5f * (points[j + gridSize].x - points[j].x);
+                            cnt++; break;
+                        case 2:
+                            delta += 0.5f * (points[j - gridSize].x - points[j].x);
+                            cnt++; break;
+                        case 3:
+                            delta += 0.5f * (points[j + 1].x - points[j].x);
+                            cnt++; break;
+                        case 4:
+                            delta += 0.5f * (points[j - 1].x - points[j].x);
+                            cnt++; break;
+                    }
+                    num >>= 3;
+                }
+            }
+        }
+        for (int i = 0; i < points.Length; i++)
+        {
+            points[i].z = (points[i].x - points[i].y) / dt;
+            points[i].y = points[i].x;
         }
 
-        for (int i = 0; i < mapSize * mapSize; i++)
+        // Calculate Normal
+        for (int i = 0; i < points.Length; i++)
         {
-            int u = i / mapSize, v = i % mapSize,
-                uDown = Mathf.Max(u - 1, 0), uUp = Mathf.Min(u + 1, mapSize - 1),
-                vLeft = Mathf.Max(v - 1, 0), vRight = Mathf.Min(v + 1, mapSize - 1),
-                idxDown = uDown * mapSize + v, idxUp = uUp * mapSize + v,
-                idxLeft = u * mapSize + vLeft, idxRight = u * mapSize + vRight;
-            
-            float dX = 0.5f * (pixels[idxRight].w - pixels[idxLeft].w), 
-                dZ = 0.5f * (pixels[idxUp].w - pixels[idxDown].w);
+            int x = i / gridSize, y = i % gridSize,
+                xl = math.max(x - 1, 0), xr = math.min(x + 1, gridSize - 1),
+                yl = math.max(y - 1, 0), yr = math.min(y + 1, gridSize - 1);
 
-            pixels[i].xyz = math.normalize(new float3(-dX, 1.0f, -dZ));
+            float dx = (points[y * gridSize + xr].x - points[y * gridSize + xl].x) / (xr - xl),
+                dz = (points[yr * gridSize + x].x - points[yl * gridSize + x].x) / (yr - yl);
+
+            datas[i] = new float4(points[i].x, math.normalize(new float3(dx, 1.0f, dz)));
+        }
+
+        dataBuffer.SetData(datas);
+        material.SetBuffer("_DataBuffer", dataBuffer);
+    }
+
+    void OnDrawGizmos()
+    {
+        if (points == null) Start();
+        for (int i = 0; i < points.Length; i++)
+        {
+            int x = i / gridSize, y = i % gridSize;
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position + new Vector3(0.5f - (x + 0.5f) / (gridSize + 1), 
+                points[i].x, 0.5f - (y + 0.5f) / (gridSize + 1)), 1f / (2 * gridSize + 2));
         }
     }
 }

@@ -2,6 +2,7 @@ Shader "PBR/Opaque"
 {
     Properties
     {
+        _Color("Col", Color) = (1, 1, 1, 1)
         _BaseMap("Base", 2D) = "white" {}
         _NormalMap("Normal", 2D) = "white" {}
         _MetalMap("Metal", 2D) = "white" {}

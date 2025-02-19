@@ -1,6 +1,10 @@
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
+CBUFFER_START(UnityPerMaterial)
+float4 _Color;
+CBUFFER_END
+
 TEXTURE2D(_BaseMap); SAMPLER(sampler_BaseMap);
 TEXTURE2D(_NormalMap); SAMPLER(sampler_NormalMap);
 TEXTURE2D(_MetalMap); SAMPLER(sampler_MetalMap);
@@ -59,7 +63,7 @@ v2f vert(appdata v)
 
 float4 frag(v2f i): SV_Target
 {
-    float4 albedo = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, i.uv);
+    float4 albedo = _Color * SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, i.uv);
     float3 normal = UnpackNormal(SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, i.uv));
     float metal = SAMPLE_TEXTURE2D(_MetalMap, sampler_MetalMap, i.uv).a;
     float rough = 1 - SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, i.uv).a;

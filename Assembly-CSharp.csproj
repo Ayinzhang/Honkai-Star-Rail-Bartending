@@ -61,14 +61,15 @@
     <Analyzer Include="D:\Unity\6000.0.23f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Wine.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
-    <Compile Include="Assets\Scripts\Surface.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Shaders\Opaque.shader" />
+    <None Include="Assets\Shaders\Core.hlsl" />
+    <None Include="Assets\Shaders\Base.shader" />
     <None Include="Assets\Shaders\PBR_Transparent.shader" />
     <None Include="Assets\Shaders\PBR_Core.hlsl" />
-    <None Include="Assets\Shaders\Transparent.shader" />
+    <None Include="Assets\Shaders\Ice.shader" />
     <None Include="Assets\Shaders\PBR_Opaque.shader" />
     <None Include="Assets\Shaders\Wine.shader" />
   </ItemGroup>

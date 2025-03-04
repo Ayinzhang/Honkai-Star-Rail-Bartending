@@ -3,20 +3,32 @@
   "WorkspaceRootPath": "E:\\Honkai Star Rail Bartending\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{76F0F015-C238-A92F-0973-C50101C8A8B7}|Assembly-CSharp.csproj|E:\\Honkai Star Rail Bartending\\assets\\scripts\\surface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76F0F015-C238-A92F-0973-C50101C8A8B7}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\surface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76F0F015-C238-A92F-0973-C50101C8A8B7}|Assembly-CSharp.csproj|e:\\honkai star rail bartending\\assets\\scripts\\wine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76F0F015-C238-A92F-0973-C50101C8A8B7}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\wine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76F0F015-C238-A92F-0973-C50101C8A8B7}|Assembly-CSharp.csproj|e:\\honkai star rail bartending\\assets\\shaders\\wine.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "AbsoluteMoniker": "D:0:0:{76F0F015-C238-A92F-0973-C50101C8A8B7}|Assembly-CSharp.csproj|E:\\Honkai Star Rail Bartending\\assets\\shaders\\wine.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{76F0F015-C238-A92F-0973-C50101C8A8B7}|Assembly-CSharp.csproj|solutionrelative:assets\\shaders\\wine.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76F0F015-C238-A92F-0973-C50101C8A8B7}|Assembly-CSharp.csproj|E:\\Honkai Star Rail Bartending\\assets\\shaders\\transparent.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{76F0F015-C238-A92F-0973-C50101C8A8B7}|Assembly-CSharp.csproj|solutionrelative:assets\\shaders\\transparent.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{76F0F015-C238-A92F-0973-C50101C8A8B7}|Assembly-CSharp.csproj|e:\\honkai star rail bartending\\assets\\shaders\\ice.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{76F0F015-C238-A92F-0973-C50101C8A8B7}|Assembly-CSharp.csproj|solutionrelative:assets\\shaders\\ice.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76F0F015-C238-A92F-0973-C50101C8A8B7}|Assembly-CSharp.csproj|E:\\Honkai Star Rail Bartending\\assets\\shaders\\opaque.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{76F0F015-C238-A92F-0973-C50101C8A8B7}|Assembly-CSharp.csproj|solutionrelative:assets\\shaders\\opaque.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{76F0F015-C238-A92F-0973-C50101C8A8B7}|Assembly-CSharp.csproj|E:\\Honkai Star Rail Bartending\\assets\\shaders\\base.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{76F0F015-C238-A92F-0973-C50101C8A8B7}|Assembly-CSharp.csproj|solutionrelative:assets\\shaders\\base.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76F0F015-C238-A92F-0973-C50101C8A8B7}|Assembly-CSharp.csproj|E:\\Honkai Star Rail Bartending\\Assets\\Shaders\\Core.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{76F0F015-C238-A92F-0973-C50101C8A8B7}|Assembly-CSharp.csproj|solutionrelative:Assets\\Shaders\\Core.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{614A5056-EFF8-2E81-A3BF-8A08B6E2BAE2}|Assembly-CSharp-Editor.csproj|E:\\Honkai Star Rail Bartending\\assets\\editor\\wineeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{614A5056-EFF8-2E81-A3BF-8A08B6E2BAE2}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\editor\\wineeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76F0F015-C238-A92F-0973-C50101C8A8B7}|Assembly-CSharp.csproj|E:\\Honkai Star Rail Bartending\\assets\\shaders\\pbr_core.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{76F0F015-C238-A92F-0973-C50101C8A8B7}|Assembly-CSharp.csproj|solutionrelative:assets\\shaders\\pbr_core.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,8 +38,59 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Ice.shader",
+              "DocumentMoniker": "E:\\Honkai Star Rail Bartending\\Assets\\Shaders\\Ice.shader",
+              "RelativeDocumentMoniker": "Assets\\Shaders\\Ice.shader",
+              "ToolTip": "E:\\Honkai Star Rail Bartending\\Assets\\Shaders\\Ice.shader",
+              "RelativeToolTip": "Assets\\Shaders\\Ice.shader",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAQwEcAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
+              "WhenOpened": "2025-03-04T14:17:34.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PBR_Core.hlsl",
+              "DocumentMoniker": "E:\\Honkai Star Rail Bartending\\Assets\\Shaders\\PBR_Core.hlsl",
+              "RelativeDocumentMoniker": "Assets\\Shaders\\PBR_Core.hlsl",
+              "ToolTip": "E:\\Honkai Star Rail Bartending\\Assets\\Shaders\\PBR_Core.hlsl",
+              "RelativeToolTip": "Assets\\Shaders\\PBR_Core.hlsl",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAEcAAABgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
+              "WhenOpened": "2025-03-01T13:43:16.747Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Core.hlsl",
+              "DocumentMoniker": "E:\\Honkai Star Rail Bartending\\Assets\\Shaders\\Core.hlsl",
+              "RelativeDocumentMoniker": "Assets\\Shaders\\Core.hlsl",
+              "ToolTip": "E:\\Honkai Star Rail Bartending\\Assets\\Shaders\\Core.hlsl",
+              "RelativeToolTip": "Assets\\Shaders\\Core.hlsl",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
+              "WhenOpened": "2025-02-21T07:23:09.888Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Base.shader",
+              "DocumentMoniker": "E:\\Honkai Star Rail Bartending\\Assets\\Shaders\\Base.shader",
+              "RelativeDocumentMoniker": "Assets\\Shaders\\Base.shader",
+              "ToolTip": "E:\\Honkai Star Rail Bartending\\Assets\\Shaders\\Base.shader",
+              "RelativeToolTip": "Assets\\Shaders\\Base.shader",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADcAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
+              "WhenOpened": "2025-02-23T19:10:23.655Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -36,48 +99,35 @@
               "RelativeDocumentMoniker": "Assets\\Shaders\\Wine.shader",
               "ToolTip": "E:\\Honkai Star Rail Bartending\\Assets\\Shaders\\Wine.shader",
               "RelativeToolTip": "Assets\\Shaders\\Wine.shader",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAQwHYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
               "WhenOpened": "2025-02-19T18:49:25.409Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Opaque.shader",
-              "DocumentMoniker": "E:\\Honkai Star Rail Bartending\\Assets\\Shaders\\Opaque.shader",
-              "RelativeDocumentMoniker": "Assets\\Shaders\\Opaque.shader",
-              "ToolTip": "E:\\Honkai Star Rail Bartending\\Assets\\Shaders\\Opaque.shader",
-              "RelativeToolTip": "Assets\\Shaders\\Opaque.shader",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABkAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
-              "WhenOpened": "2025-02-11T18:13:53.914Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Transparent.shader",
-              "DocumentMoniker": "E:\\Honkai Star Rail Bartending\\Assets\\Shaders\\Transparent.shader",
-              "RelativeDocumentMoniker": "Assets\\Shaders\\Transparent.shader",
-              "ToolTip": "E:\\Honkai Star Rail Bartending\\Assets\\Shaders\\Transparent.shader",
-              "RelativeToolTip": "Assets\\Shaders\\Transparent.shader",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAAE8AAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
-              "WhenOpened": "2025-02-15T08:26:10.012Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Surface.cs",
-              "DocumentMoniker": "E:\\Honkai Star Rail Bartending\\Assets\\Scripts\\Surface.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Surface.cs",
-              "ToolTip": "E:\\Honkai Star Rail Bartending\\Assets\\Scripts\\Surface.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Surface.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAADAAAAAzAAAAAAAAAA==",
+              "Title": "Wine.cs",
+              "DocumentMoniker": "E:\\Honkai Star Rail Bartending\\Assets\\Scripts\\Wine.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Wine.cs",
+              "ToolTip": "E:\\Honkai Star Rail Bartending\\Assets\\Scripts\\Wine.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Wine.cs",
+              "ViewState": "AgIAANsAAAAAAAAAAAAAAOMAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-08T16:06:16.575Z",
+              "WhenOpened": "2025-02-21T18:02:15.244Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "WineEditor.cs",
+              "DocumentMoniker": "E:\\Honkai Star Rail Bartending\\Assets\\Editor\\WineEditor.cs",
+              "RelativeDocumentMoniker": "Assets\\Editor\\WineEditor.cs",
+              "ToolTip": "E:\\Honkai Star Rail Bartending\\Assets\\Editor\\WineEditor.cs",
+              "RelativeToolTip": "Assets\\Editor\\WineEditor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-23T09:41:38.794Z",
               "EditorCaption": ""
             }
           ]

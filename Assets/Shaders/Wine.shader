@@ -33,7 +33,9 @@ Shader "Custom/Wine"
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #include "Core.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+
             #define LAYER_NUM 3
             TEXTURE2D(_BubbleMap); SAMPLER(sampler_BubbleMap);
             TEXTURE2D(_NoiseMap); SAMPLER(sampler_NoiseMap);
@@ -41,6 +43,19 @@ Shader "Custom/Wine"
             int _LayerCnt, _GridSize; float _Height, _BlendFrac; float4 _Color, _BubbleSV, _NoiseSV; 
             float4 _LayerCols[LAYER_NUM]; StructuredBuffer<float4> _DataBuffer; // x: height yzw: normal
             CBUFFER_END
+
+            float CosStep(float a, float b, float t)
+            {
+                float f = (1 - cos(t * PI)) * 0.5;
+                return a * (1 - f) + b * f;
+            }
+                        
+            float3 CosStep(float3 a, float3 b, float t)
+            {
+                float ft = t * PI;
+                float f = (1 - cos(t * PI)) * 0.5;
+                return a * (1 - f) + b * f;
+            }
 
             struct appdata
             {
@@ -85,7 +100,7 @@ Shader "Custom/Wine"
                 float h = (i.position.y + 0.3) * 2 * LAYER_NUM - 0.5,
                 f = saturate((frac(h) - 0.5 + _BlendFrac) / (2 * _BlendFrac));
                 int l = max(0, floor(h)), r = min(_LayerCnt - 1, ceil(h));
-                albedo = lerp(_LayerCols[l], _LayerCols[r], f * (_NoiseSV.x * SAMPLE_TEXTURE2D(_NoiseMap, sampler_NoiseMap, i.uv + _Time.x * _NoiseSV.zw).a + 1));
+                albedo = lerp(_LayerCols[l], _LayerCols[r], f * (_NoiseSV.x * SAMPLE_TEXTURE2D(_NoiseMap, sampler_NoiseMap, i.uv + _Time.x * _NoiseSV.zw).a + 1 - 0.5 * _NoiseSV.x));
                 // Pixel Height & Normal
                 int xl = floor(i.uv.x * _GridSize), xr = xl + 1,
                     yl = floor(i.uv.y * _GridSize), yr = yl + 1;

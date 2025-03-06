@@ -86,20 +86,21 @@ public class Wine: MonoBehaviour
                 points[i].x, y / (gridSize - 1f));
             float d = (pos - pointPos).magnitude, dx = radius + 1f / (2 * gridSize - 2);
             if (d < dx) continue;
-            points[i].x = pos.y < height? Mathf.Sqrt(d * d - dx * dx): -Mathf.Sqrt(d * d - dx * dx);
+            points[i].x = -Mathf.Sqrt(d * d - dx * dx);
             points[i].z = (points[i].x - points[i].y) / dt;
         }
     }
 
-    void UpdateMassSpring()
+    void UpdateMassSpring(bool updateVel = true)
     {
         // PBD Iteration
         float delta;
-        for (int i = 0; i < points.Length; i++)
-        {
-            points[i].z *= damp;
-            points[i].x += dt * points[i].z;
-        }
+        if (updateVel) 
+            for (int i = 0; i < points.Length; i++)
+            {
+                points[i].z *= damp;
+                points[i].x += dt * points[i].z;
+            }
         for (int i = 0; i < iteration; i++)
         {
             for (int j = 0; j < constrains.Length; j++)
@@ -186,15 +187,13 @@ public class Wine: MonoBehaviour
         {
             if (ices[i].gameObject.activeSelf == false) continue;
             ices[i].linearVelocity *= damp; ices[i].angularVelocity *= damp;
-            if (ices[i].transform.position.y - 0.05f < height)
+            Vector3 pos = ices[i].transform.position;
+            if (pos.y - 0.05f < height)
             {
                 ices[i].linearVelocity *= wineDamp; ices[i].angularVelocity *= wineDamp;
                 ices[i].AddForce(new Vector3(0, 0.098f * Mathf.Min(0.1f, height - ices[i].transform.position.y + 0.05f), 0));
-                if(ices[i].transform.position.y + 0.05f > height)
-                {
-                    Vector3 pos = ices[i].transform.position;
-                    HandleCollision(new Vector3(0.5f - 5 * pos.z, 5 * pos.y, 0.5f - 5 * pos.x), 0.25f);
-                }
+                if(pos.y + 0.05f > height)
+                    HandleCollision(new Vector3(0.5f - 5 * pos.z, height + 5 * (pos.y - height), 0.5f - 5 * pos.x), 0.2f);
             }
             else ices[i].linearVelocity *= damp; ices[i].angularVelocity *= damp;
             ices[i].AddForce(new Vector3(0, -0.00784f, 0));
@@ -219,6 +218,7 @@ public class Wine: MonoBehaviour
             float angle = 4 * Mathf.PI * time / period;
             HandleCollision(new Vector3(0.5f - Mathf.Cos(angle) / (gridSize - 1),
                 height, 0.5f + Mathf.Sin(angle) / (gridSize - 1)), 1f / (3 * gridSize - 3));
+            UpdateMassSpring(false);
             spoon.transform.position = center + new Vector3(radiusX * Mathf.Cos(angle), 0, radiusZ * Mathf.Sin(angle));
             yield return null;
         }

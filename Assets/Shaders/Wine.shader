@@ -17,14 +17,6 @@ Shader "Custom/Wine"
         
         Pass
         {
-            Stencil
-            {
-	            Ref 10
-                Comp NotEqual
-	            Pass Replace
-                ZFail Replace
-            }
-
             Tags { "LightMode"="UniversalForward" }
             Blend SrcAlpha OneMinusSrcAlpha
             ZWrite On

@@ -9,6 +9,7 @@ Shader "Custom/Wine"
         _NoiseSV("NoiseSV", Vector) = (1, 1, 1, 1)
         _Height("Height", Range(-0.3, 0.2)) = 0
         _BlendFrac("BlendFrac", Range(0, 0.5)) = 0.1
+        _RefractionFrac("RefractionFrac", Range(0, 0.1)) = 0.1
     }
     SubShader
     {
@@ -19,7 +20,6 @@ Shader "Custom/Wine"
         {
             Tags { "LightMode"="UniversalForward" }
             Blend SrcAlpha OneMinusSrcAlpha
-            ZWrite On
             Cull Off
 
             HLSLPROGRAM
@@ -31,8 +31,10 @@ Shader "Custom/Wine"
             #define LAYER_NUM 3
             TEXTURE2D(_BubbleMap); SAMPLER(sampler_BubbleMap);
             TEXTURE2D(_NoiseMap); SAMPLER(sampler_NoiseMap);
+            TEXTURE2D(_CameraOpaqueTexture); SAMPLER(sampler_CameraOpaqueTexture);
+            TEXTURE2D(_CameraDepthTexture); SAMPLER(sampler_CameraDepthTexture);
             CBUFFER_START(UnityPerMaterial)
-            int _LayerCnt, _GridSize; float _Height, _BlendFrac; float4 _Color, _BubbleSV, _NoiseSV; 
+            int _LayerCnt, _GridSize; float _Height, _BlendFrac, _RefractionFrac; float4 _Color, _BubbleSV, _NoiseSV; 
             float4 _LayerCols[LAYER_NUM]; StructuredBuffer<float4> _DataBuffer; // x: height yzw: normal
             CBUFFER_END
 
@@ -63,9 +65,10 @@ Shader "Custom/Wine"
                 float2 uv : TEXCOORD0;
                 float3 position : TEXCOORD1;
                 float3 normal : TEXCOORD2;
-                float3 tbn0 : TEXCOORD3;
-                float3 tbn1 : TEXCOORD4;
-                float3 tbn2 : TEXCOORD5;
+                float4 screenpos : TEXCOORD3;
+                float3 tbn0 : TEXCOORD4;
+                float3 tbn1 : TEXCOORD5;
+                float3 tbn2 : TEXCOORD6;
             };
 
             v2f vert (appdata v)
@@ -74,6 +77,7 @@ Shader "Custom/Wine"
                 o.uv = v.uv;
                 o.vertex = TransformObjectToHClip(v.vertex);
                 o.position = TransformObjectToWorld(v.vertex.xyz);
+                o.screenpos = ComputeScreenPos(o.vertex);
 
                 float3 normalWS = o.normal = TransformObjectToWorldNormal(v.normal);
                 float3 tangentWS = TransformObjectToWorldDir(v.tangent.xyz);
@@ -85,9 +89,8 @@ Shader "Custom/Wine"
                 return o;
             }
 
-            float4 frag(v2f i, out float depth : SV_Depth) : SV_Target
+            float4 frag(v2f i) : SV_Target
             { 
-                depth = i.vertex.z;
                 float4 albedo = _Color;
                 float h = (i.position.y + 0.3) * 2 * LAYER_NUM - 0.5,
                 f = saturate((frac(h) - 0.5 + _BlendFrac) / (2 * _BlendFrac));
@@ -125,8 +128,19 @@ Shader "Custom/Wine"
                 float3 bubbleCol = bubble.g;
 
                 float3 col = ambient + diffuse + specular + bubbleCol;
+
+                float2 screenUV = i.screenpos.xy / i.screenpos.w;
+                float rawDepth = SAMPLE_TEXTURE2D(_CameraDepthTexture, sampler_CameraDepthTexture, screenUV).r;
+                float sceneDepth = LinearEyeDepth(rawDepth, _ZBufferParams);
+
+                float2 refractOffset = i.normal.xy * _RefractionFrac * (sceneDepth - i.position.z);
+                float2 refractUV = clamp(screenUV + refractOffset, float2(0, 0), float2(1, 1));
+
+                float4 refractColor = SAMPLE_TEXTURE2D(_CameraOpaqueTexture, sampler_CameraOpaqueTexture, refractUV);
+                float alpha = max(albedo.a, bubble.a);
+                col = lerp(refractColor.rgb, col, alpha);
                 
-                return float4(col.rgb, max(albedo.a, bubble.a));
+                return float4(col, alpha);
             }
             ENDHLSL
         }

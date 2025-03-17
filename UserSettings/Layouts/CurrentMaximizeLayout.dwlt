@@ -106,7 +106,7 @@ MonoBehaviour:
       y: 21
       width: 574.00006
       height: 313.8
-    m_Scale: {x: 0.22421877, y: 0.22421876}
+    m_Scale: {x: 0.22421876, y: 0.22421876}
     m_Translation: {x: 287.00003, y: 156.9}
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -114,9 +114,9 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -1280
+      x: -1280.0001
       y: -699.763
-      width: 2560
+      width: 2560.0002
       height: 1399.526
     m_MinimalGUI: 1
   m_defaultScale: 0.22421877
@@ -756,9 +756,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 0.019961357, y: -0.013437718, z: 0.005254388}
+    m_Target: {x: 0.631, y: -0.053258516, z: 0.07402235}
     speed: 2
-    m_Value: {x: 0.019961357, y: -0.013437718, z: 0.005254388}
+    m_Value: {x: 0.019961296, y: 0.32436687, z: -0.836833}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -808,9 +808,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_Size:
-    m_Target: 0.688603
+    m_Target: 0.086602546
     speed: 2
-    m_Value: 0.688603
+    m_Value: 0.76183605
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -963,7 +963,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 54
+  controlID: 2638
   draggingID: 0
 --- !u!114 &10
 MonoBehaviour:
@@ -1030,9 +1030,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 0aa50000
-      m_LastClickedID: 42250
-      m_ExpandedIDs: eafaffff
+      m_SelectedIDs: acd80000
+      m_LastClickedID: 55468
+      m_ExpandedIDs: a655ffff665bffffb0d80000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1131,7 +1131,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Shaders
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1141,16 +1141,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Shaders
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: E:\Honkai Star Rail Bartending
+  m_LastProjectPath: E:\Honkai-Star-Rail-Bartending
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 84a70000
-    m_LastClickedID: 42884
-    m_ExpandedIDs: 000000009ea5000000ca9a3b
+    m_SelectedIDs: 76d80000
+    m_LastClickedID: 55414
+    m_ExpandedIDs: 0000000040d8000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1179,7 +1179,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000009ea50000
+    m_ExpandedIDs: 0000000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1205,8 +1205,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 0aa50000
-    m_LastClickedInstanceID: 42250
+    m_SelectedInstanceIDs: acd80000
+    m_LastClickedInstanceID: 55468
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 2eae010038b1020026b50100dc670000d266000044c601007032010022ca0100aecc0100facb010068ca0100ecc90100cccb01006ace01003acf01002eb2040080f70500c0dd0100d4dd0100006800000e68000006a5000078e001003ae201009ee00100f8df0100eada020026ee00002a38010060da0100a6920000dc930000e8960000a0880000fc7800007e6c0000806c000060650000806b0000826b0000846b0000fe6b000076b5000010a4000000000000
     m_RenameOverlay:
@@ -1233,7 +1233,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 17}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 155.6
@@ -1342,7 +1342,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 524.8
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

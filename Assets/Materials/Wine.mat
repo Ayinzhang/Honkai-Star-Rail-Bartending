@@ -36,6 +36,7 @@ Material:
     - _BlendFrac: 0.1
     - _GridSize: 4
     - _Height: -0.3
+    - _RefractionFrac: 0.1
     m_Colors:
     - _BubbleSV: {r: 10, g: 10, b: 0, a: 10}
     - _Color: {r: 0.443396, g: 0.81904095, b: 1, a: 0.8}

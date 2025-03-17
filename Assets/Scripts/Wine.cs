@@ -36,7 +36,7 @@ public class Wine: MonoBehaviour
         material.SetInt("_LayerCnt", layerCnt);
         material.SetInt("_GridSize", gridSize);
         material.SetFloat("_Height", height);
-        BuildConstrains();
+        BuildConstrains(); Camera.main.depthTextureMode |= DepthTextureMode.Depth;
     }
 
     void FixedUpdate()
